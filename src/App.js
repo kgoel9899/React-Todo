@@ -5,19 +5,34 @@ import Add from './Add';
 //passing multiple objects to the test.js file
 class App extends Component {
   state = {
-    names: [
-      {name:"A", name1: "B", id: 1},
-      {name:"C", name1: "D", id: 2},
-      {name:"D", name1: "E", id: 3}
+    todos: [
+      {work:"A", id: 1},
+      {work:"C", id: 2},
+      {work:"D", id: 3}
     ]
+  }
+  addTodo = (todo) => {
+    console.log(todo);
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState ({
+      todos: todos
+    })
+  }
+  deleteTodo = (id) => {
+    console.log(id);
+    let todos = this.state.todos.filter(todo => {
+      return todo.id !== id;
+    });
+    this.setState ({
+      todos: todos
+    })
   }
   render() {
     return (
       <div className="App">
-        <div>Hello</div>
-        <div>Welcome</div>
-        <Test names={this.state.names}/>
-        <Add />
+        <Test deleteTodo={this.deleteTodo} todos={this.state.todos}/>
+        <Add addTodo={this.addTodo}/>
       </div>
     )
   }

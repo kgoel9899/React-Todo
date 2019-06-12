@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Test from './Test';
+import Add from './Add';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//passing multiple objects to the test.js file
+class App extends Component {
+  state = {
+    names: [
+      {name:"A", name1: "B", id: 1},
+      {name:"C", name1: "D", id: 2},
+      {name:"D", name1: "E", id: 3}
+    ]
+  }
+  render() {
+    return (
+      <div className="App">
+        <div>Hello</div>
+        <div>Welcome</div>
+        <Test names={this.state.names}/>
+        <Add />
+      </div>
+    )
+  }
 }
 
 export default App;
